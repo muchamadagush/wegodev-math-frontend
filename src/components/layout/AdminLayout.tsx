@@ -21,8 +21,8 @@ export default function AdminLayout() {
           <Link to="/dashboard/parents" className="flex items-center gap-2 p-2 hover:bg-slate-800 rounded">
             <Users size={20} /> Data Parents
           </Link>
-          <Link to="/dashboard/questions" className="flex items-center gap-2 p-2 hover:bg-slate-800 rounded">
-            <BookOpen size={20} /> Bank Soal
+          <Link to="/dashboard/curriculum" className="flex items-center gap-2 p-2 hover:bg-slate-800 rounded">
+            <BookOpen size={20} /> Kurikulum
           </Link>
         </nav>
         <div className="p-4 border-t border-slate-700">

@@ -19,3 +19,13 @@ export interface AdminLoginResponse {
     role: string
   }
 }
+
+export interface Topic {
+  id: string
+  name: string
+  slug: string
+  grade_level: number
+  subject: 'math' | 'science'
+  question_count?: number
+  created_at?: string
+}

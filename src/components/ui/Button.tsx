@@ -1,8 +1,9 @@
 import { clsx } from 'clsx'
-import { ButtonHTMLAttributes, forwardRef } from 'react'
+import { forwardRef } from 'react'
+import type { ButtonHTMLAttributes } from 'react'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'default' | 'outline' | 'destructive'
+  variant?: 'default' | 'outline' | 'destructive' | 'danger'
   size?: 'sm' | 'md' | 'lg'
 }
 
@@ -10,7 +11,8 @@ const base = 'inline-flex items-center justify-center font-medium rounded-md foc
 const variants: Record<string,string> = {
   default: 'bg-blue-600 hover:bg-blue-700 text-white',
   outline: 'border border-gray-300 hover:bg-gray-100',
-  destructive: 'bg-red-600 hover:bg-red-700 text-white'
+  destructive: 'bg-red-600 hover:bg-red-700 text-white',
+  danger: 'bg-red-600 hover:bg-red-700 text-white'
 }
 const sizes: Record<string,string> = {
   sm: 'h-8 px-3 text-sm',

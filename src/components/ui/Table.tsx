@@ -1,8 +1,8 @@
-import { ReactNode } from 'react'
+import React from 'react'
 
 export interface TableProps {
   headers: string[]
-  children?: ReactNode
+  children?: React.ReactNode
 }
 
 export function Table({ headers, children }: TableProps) {
