@@ -14,8 +14,9 @@ export default function TopicForm({ initialData, onSubmit, isLoading }: TopicFor
   const [formData, setFormData] = useState({
     name: initialData?.name || '',
     slug: initialData?.slug || '',
-    grade_level: initialData?.grade_level || 1,
-    subject: initialData?.subject || 'math' as 'math' | 'science'
+    gradeLevel: initialData?.gradeLevel || 1,
+    subject: initialData?.subject || 'math' as 'math' | 'science' | 'english',
+    order: initialData?.order || 1
   })
 
   useEffect(() => {
@@ -23,8 +24,9 @@ export default function TopicForm({ initialData, onSubmit, isLoading }: TopicFor
       setFormData({
         name: initialData.name,
         slug: initialData.slug,
-        grade_level: initialData.grade_level,
-        subject: initialData.subject
+        gradeLevel: initialData.gradeLevel,
+        subject: initialData.subject,
+        order: initialData.order
       })
     }
   }, [initialData])
@@ -78,8 +80,8 @@ export default function TopicForm({ initialData, onSubmit, isLoading }: TopicFor
           Jenjang Kelas <span className="text-red-500">*</span>
         </label>
         <select
-          value={formData.grade_level}
-          onChange={(e) => setFormData(prev => ({ ...prev, grade_level: Number(e.target.value) }))}
+          value={formData.gradeLevel}
+          onChange={(e) => setFormData(prev => ({ ...prev, gradeLevel: Number(e.target.value) }))}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         >
@@ -99,7 +101,7 @@ export default function TopicForm({ initialData, onSubmit, isLoading }: TopicFor
               type="radio"
               value="math"
               checked={formData.subject === 'math'}
-              onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value as 'math' | 'science' }))}
+              onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value as 'math' | 'science' | 'english' }))}
               className="mr-2"
             />
             Matematika
@@ -109,10 +111,20 @@ export default function TopicForm({ initialData, onSubmit, isLoading }: TopicFor
               type="radio"
               value="science"
               checked={formData.subject === 'science'}
-              onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value as 'math' | 'science' }))}
+              onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value as 'math' | 'science' | 'english' }))}
               className="mr-2"
             />
             Sains
+          </label>
+          <label className="flex items-center">
+            <input
+              type="radio"
+              value="english"
+              checked={formData.subject === 'english'}
+              onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value as 'math' | 'science' | 'english' }))}
+              className="mr-2"
+            />
+            Bahasa Inggris
           </label>
         </div>
       </div>

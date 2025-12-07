@@ -15,7 +15,7 @@ export default function QuestionForm({ initialData, onSubmit, isLoading }: Quest
   const { data: topics } = useTopics()
   
   const [formData, setFormData] = useState({
-    topic_id: initialData?.topic_id || '',
+    topicId: initialData?.topicId || '',
     difficulty: initialData?.difficulty || 1 as 1 | 2 | 3,
     type: initialData?.type || 'mcq' as 'mcq' | 'fill_in',
     content_text: initialData?.content?.text || '',
@@ -26,25 +26,25 @@ export default function QuestionForm({ initialData, onSubmit, isLoading }: Quest
 
   const [options, setOptions] = useState(
     initialData?.options || [
-      { id: 'A', value: '', is_correct: false },
-      { id: 'B', value: '', is_correct: false },
-      { id: 'C', value: '', is_correct: false },
-      { id: 'D', value: '', is_correct: false }
+      { id: 'A', value: '', isCorrect: false },
+      { id: 'B', value: '', isCorrect: false },
+      { id: 'C', value: '', isCorrect: false },
+      { id: 'D', value: '', isCorrect: false }
     ]
   )
 
   useEffect(() => {
     if (initialData) {
       setFormData({
-        topic_id: initialData.topic_id,
+        topicId: initialData.topicId,
         difficulty: initialData.difficulty,
         type: initialData.type,
         content_text: initialData.content.text,
         content_image: initialData.content.image || '',
         content_latex: initialData.content.latex || '',
-        explanation: initialData.explanation
+        explanation: initialData.explanation || ''
       })
-      if (initialData.options.length > 0) {
+      if (initialData.options && initialData.options.length > 0) {
         setOptions(initialData.options)
       }
     }
@@ -54,7 +54,7 @@ export default function QuestionForm({ initialData, onSubmit, isLoading }: Quest
     e.preventDefault()
     
     const questionData: Partial<Question> = {
-      topic_id: formData.topic_id,
+      topicId: formData.topicId,
       difficulty: formData.difficulty,
       type: formData.type,
       content: {
@@ -62,7 +62,8 @@ export default function QuestionForm({ initialData, onSubmit, isLoading }: Quest
         image: formData.content_image || undefined,
         latex: formData.content_latex || undefined
       },
-      explanation: formData.explanation
+      explanation: formData.explanation,
+      correctAnswer: formData.type === 'mcq' ? options.find(o => o.isCorrect)?.id : undefined
     }
 
     if (formData.type === 'mcq') {
@@ -83,7 +84,7 @@ export default function QuestionForm({ initialData, onSubmit, isLoading }: Quest
   const setCorrectAnswer = (index: number) => {
     const newOptions = options.map((opt, i) => ({
       ...opt,
-      is_correct: i === index
+      isCorrect: i === index
     }))
     setOptions(newOptions)
   }
@@ -95,15 +96,15 @@ export default function QuestionForm({ initialData, onSubmit, isLoading }: Quest
           Topik <span className="text-red-500">*</span>
         </label>
         <select
-          value={formData.topic_id}
-          onChange={(e) => setFormData(prev => ({ ...prev, topic_id: e.target.value }))}
+          value={formData.topicId}
+          onChange={(e) => setFormData(prev => ({ ...prev, topicId: e.target.value }))}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         >
           <option value="">-- Pilih Topik --</option>
           {topics?.map(topic => (
             <option key={topic.id} value={topic.id}>
-              {topic.name} (Kelas {topic.grade_level})
+              {topic.name} (Kelas {topic.gradeLevel})
             </option>
           ))}
         </select>
@@ -193,7 +194,7 @@ export default function QuestionForm({ initialData, onSubmit, isLoading }: Quest
                 <input
                   type="radio"
                   name="correct_answer"
-                  checked={option.is_correct}
+                  checked={option.isCorrect}
                   onChange={() => setCorrectAnswer(index)}
                   className="mt-1"
                 />

@@ -9,46 +9,46 @@ const DUMMY_TOPICS: Topic[] = [
     id: '1',
     name: 'Penjumlahan dan Pengurangan',
     slug: 'penjumlahan-pengurangan',
-    grade_level: 1,
+    gradeLevel: 1,
     subject: 'math',
-    question_count: 25,
-    created_at: '2024-01-15T10:00:00Z'
+    order: 1,
+    iconUrl: 'https://via.placeholder.com/100'
   },
   {
     id: '2',
     name: 'Perkalian Dasar',
     slug: 'perkalian-dasar',
-    grade_level: 2,
+    gradeLevel: 2,
     subject: 'math',
-    question_count: 30,
-    created_at: '2024-01-20T10:00:00Z'
+    order: 2,
+    iconUrl: 'https://via.placeholder.com/100'
   },
   {
     id: '3',
     name: 'Pembagian Bilangan',
     slug: 'pembagian-bilangan',
-    grade_level: 3,
+    gradeLevel: 3,
     subject: 'math',
-    question_count: 20,
-    created_at: '2024-02-01T10:00:00Z'
+    order: 3,
+    iconUrl: 'https://via.placeholder.com/100'
   },
   {
     id: '4',
     name: 'Pecahan Sederhana',
     slug: 'pecahan-sederhana',
-    grade_level: 4,
+    gradeLevel: 4,
     subject: 'math',
-    question_count: 15,
-    created_at: '2024-02-10T10:00:00Z'
+    order: 4,
+    iconUrl: 'https://via.placeholder.com/100'
   },
   {
     id: '5',
     name: 'Makhluk Hidup',
     slug: 'makhluk-hidup',
-    grade_level: 1,
+    gradeLevel: 1,
     subject: 'science',
-    question_count: 18,
-    created_at: '2024-01-25T10:00:00Z'
+    order: 5,
+    iconUrl: 'https://via.placeholder.com/100'
   }
 ]
 
@@ -127,10 +127,10 @@ export function useCreateTopic() {
           id: String(Date.now()),
           name: topicData.name!,
           slug: topicData.slug!,
-          grade_level: topicData.grade_level!,
+          gradeLevel: topicData.gradeLevel!,
           subject: topicData.subject!,
-          question_count: 0,
-          created_at: new Date().toISOString()
+          order: topicData.order || 1,
+          iconUrl: topicData.iconUrl
         }
         return newTopic
       }

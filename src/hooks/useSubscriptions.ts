@@ -10,24 +10,24 @@ const DUMMY_PLANS: SubscriptionPlan[] = [
     name: 'Premium Monthly',
     slug: 'premium-monthly',
     price: 50000,
-    original_price: 75000,
-    duration_days: 30,
+    originalPrice: 75000,
+    durationDays: 30,
     features: [
       'Akses semua materi pelajaran',
       'Latihan soal unlimited',
       'Progress tracking',
       'Leaderboard global'
     ],
-    is_active: true,
-    is_recommended: false
+    isActive: true,
+    isRecomended: false
   },
   {
     id: '2',
     name: 'Premium Yearly',
     slug: 'premium-yearly',
     price: 500000,
-    original_price: 900000,
-    duration_days: 365,
+    originalPrice: 900000,
+    durationDays: 365,
     features: [
       'Akses semua materi pelajaran',
       'Latihan soal unlimited',
@@ -36,22 +36,22 @@ const DUMMY_PLANS: SubscriptionPlan[] = [
       'Konsultasi dengan tutor',
       'Sertifikat digital'
     ],
-    is_active: true,
-    is_recommended: true
+    isActive: true,
+    isRecomended: true
   },
   {
     id: '3',
     name: 'Basic Plan',
     slug: 'basic-plan',
     price: 0,
-    original_price: 0,
-    duration_days: 365,
+    originalPrice: 0,
+    durationDays: 365,
     features: [
       'Akses materi terbatas',
       '10 latihan soal per hari'
     ],
-    is_active: true,
-    is_recommended: false
+    isActive: true,
+    isRecomended: false
   }
 ]
 
@@ -100,11 +100,11 @@ export function useCreatePlan() {
           name: planData.name!,
           slug: planData.slug!,
           price: planData.price!,
-          original_price: planData.original_price!,
-          duration_days: planData.duration_days!,
+          originalPrice: planData.originalPrice!,
+          durationDays: planData.durationDays!,
           features: planData.features || [],
-          is_active: planData.is_active ?? true,
-          is_recommended: planData.is_recommended ?? false
+          isActive: planData.isActive ?? true,
+          isRecomended: planData.isRecomended ?? false
         }
         return newPlan
       }

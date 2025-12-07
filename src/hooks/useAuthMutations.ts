@@ -1,19 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import api from '../lib/axios'
+import type { AdminLoginResponse } from '../types'
 
 interface LoginCredentials {
   email: string
   password: string
-}
-
-interface LoginResponse {
-  token: string
-  user?: {
-    id: string
-    email: string
-    role: string
-  }
 }
 
 export function useLogin() {
@@ -21,7 +13,7 @@ export function useLogin() {
 
   return useMutation({
     mutationFn: async (credentials: LoginCredentials) => {
-      const { data } = await api.post<LoginResponse>('/admin/login', credentials)
+      const { data } = await api.post<AdminLoginResponse>('/admin/login', credentials)
       return data
     },
     onSuccess: (data) => {

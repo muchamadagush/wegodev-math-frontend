@@ -55,7 +55,7 @@ export default function PlanList() {
             <td className="px-3 py-2">
               <div className="flex items-center gap-2">
                 {plan.name}
-                {plan.is_recommended && (
+                {plan.isRecomended && (
                   <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
                 )}
               </div>
@@ -64,18 +64,18 @@ export default function PlanList() {
               {formatRupiah(plan.price)}
             </td>
             <td className="px-3 py-2 text-gray-500 line-through">
-              {formatRupiah(plan.original_price)}
+              {formatRupiah(plan.originalPrice || plan.price)}
             </td>
             <td className="px-3 py-2">
-              {plan.duration_days} hari
+              {plan.durationDays} hari
             </td>
             <td className="px-3 py-2">
               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                plan.is_active 
+                plan.isActive 
                   ? 'bg-green-100 text-green-700' 
                   : 'bg-gray-100 text-gray-700'
               }`}>
-                {plan.is_active ? 'Active' : 'Inactive'}
+                {plan.isActive ? 'Active' : 'Inactive'}
               </span>
             </td>
             <td className="px-3 py-2">

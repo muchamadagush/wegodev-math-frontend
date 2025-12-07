@@ -41,21 +41,22 @@ export default function Curriculum() {
         </Button>
       </div>
 
-      <Table headers={['Nama Topik', 'Jenjang', 'Mapel', 'Jml Soal', 'Aksi']}>
+      <Table headers={['Nama Topik', 'Jenjang', 'Mapel', 'Aksi']}>
         {topics?.map(topic => (
           <tr key={topic.id} className="hover:bg-gray-50">
             <td className="px-3 py-2">{topic.name}</td>
-            <td className="px-3 py-2">Kelas {topic.grade_level}</td>
+            <td className="px-3 py-2">Kelas {topic.gradeLevel}</td>
             <td className="px-3 py-2">
               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                 topic.subject === 'math' 
                   ? 'bg-blue-100 text-blue-700' 
-                  : 'bg-green-100 text-green-700'
+                  : topic.subject === 'science'
+                  ? 'bg-green-100 text-green-700'
+                  : 'bg-purple-100 text-purple-700'
               }`}>
-                {topic.subject === 'math' ? 'Matematika' : 'Sains'}
+                {topic.subject === 'math' ? 'Matematika' : topic.subject === 'science' ? 'Sains' : 'Bahasa Inggris'}
               </span>
             </td>
-            <td className="px-3 py-2">{topic.question_count || 0}</td>
             <td className="px-3 py-2">
               <div className="flex gap-2">
                 <Button

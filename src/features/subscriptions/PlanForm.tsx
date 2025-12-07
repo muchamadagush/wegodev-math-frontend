@@ -16,10 +16,10 @@ export default function PlanForm({ initialData, onSubmit, isLoading }: PlanFormP
     name: initialData?.name || '',
     slug: initialData?.slug || '',
     price: initialData?.price || 0,
-    original_price: initialData?.original_price || 0,
-    duration_days: initialData?.duration_days || 30,
-    is_active: initialData?.is_active ?? true,
-    is_recommended: initialData?.is_recommended ?? false
+    originalPrice: initialData?.originalPrice || 0,
+    durationDays: initialData?.durationDays || 30,
+    isActive: initialData?.isActive ?? true,
+    isRecomended: initialData?.isRecomended ?? false
   })
   
   const [features, setFeatures] = useState<string[]>(initialData?.features || [''])
@@ -30,10 +30,10 @@ export default function PlanForm({ initialData, onSubmit, isLoading }: PlanFormP
         name: initialData.name,
         slug: initialData.slug,
         price: initialData.price,
-        original_price: initialData.original_price,
-        duration_days: initialData.duration_days,
-        is_active: initialData.is_active,
-        is_recommended: initialData.is_recommended
+        originalPrice: initialData.originalPrice || initialData.price,
+        durationDays: initialData.durationDays,
+        isActive: initialData.isActive,
+        isRecomended: initialData.isRecomended
       })
       setFeatures(initialData.features.length > 0 ? initialData.features : [''])
     }
@@ -120,8 +120,8 @@ export default function PlanForm({ initialData, onSubmit, isLoading }: PlanFormP
           </label>
           <input
             type="number"
-            value={formData.original_price}
-            onChange={(e) => setFormData(prev => ({ ...prev, original_price: Number(e.target.value) }))}
+            value={formData.originalPrice}
+            onChange={(e) => setFormData(prev => ({ ...prev, originalPrice: Number(e.target.value) }))}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
             min="0"
@@ -136,8 +136,8 @@ export default function PlanForm({ initialData, onSubmit, isLoading }: PlanFormP
         </label>
         <input
           type="number"
-          value={formData.duration_days}
-          onChange={(e) => setFormData(prev => ({ ...prev, duration_days: Number(e.target.value) }))}
+          value={formData.durationDays}
+          onChange={(e) => setFormData(prev => ({ ...prev, durationDays: Number(e.target.value) }))}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
           min="1"
@@ -189,8 +189,8 @@ export default function PlanForm({ initialData, onSubmit, isLoading }: PlanFormP
         <label className="flex items-center">
           <input
             type="checkbox"
-            checked={formData.is_active}
-            onChange={(e) => setFormData(prev => ({ ...prev, is_active: e.target.checked }))}
+            checked={formData.isActive}
+            onChange={(e) => setFormData(prev => ({ ...prev, isActive: e.target.checked }))}
             className="mr-2"
           />
           <span className="text-sm text-gray-700">Aktif</span>
@@ -199,8 +199,8 @@ export default function PlanForm({ initialData, onSubmit, isLoading }: PlanFormP
         <label className="flex items-center">
           <input
             type="checkbox"
-            checked={formData.is_recommended}
-            onChange={(e) => setFormData(prev => ({ ...prev, is_recommended: e.target.checked }))}
+            checked={formData.isRecomended}
+            onChange={(e) => setFormData(prev => ({ ...prev, isRecomended: e.target.checked }))}
             className="mr-2"
           />
           <span className="text-sm text-gray-700">Paket Rekomendasi</span>

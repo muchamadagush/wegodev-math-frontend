@@ -7,7 +7,7 @@ import type { Question } from '../types'
 const DUMMY_QUESTIONS: Question[] = [
   {
     id: '1',
-    topic_id: '1',
+    topicId: '1',
     difficulty: 1,
     type: 'mcq',
     content: {
@@ -16,16 +16,17 @@ const DUMMY_QUESTIONS: Question[] = [
       latex: ''
     },
     options: [
-      { id: 'A', value: '4', is_correct: false },
-      { id: 'B', value: '5', is_correct: true },
-      { id: 'C', value: '6', is_correct: false },
-      { id: 'D', value: '7', is_correct: false }
+      { id: 'A', value: '4', isCorrect: false },
+      { id: 'B', value: '5', isCorrect: true },
+      { id: 'C', value: '6', isCorrect: false },
+      { id: 'D', value: '7', isCorrect: false }
     ],
+    correctAnswer: 'B',
     explanation: 'Karena 2 ditambah 3 sama dengan 5'
   },
   {
     id: '2',
-    topic_id: '1',
+    topicId: '1',
     difficulty: 2,
     type: 'mcq',
     content: {
@@ -34,16 +35,17 @@ const DUMMY_QUESTIONS: Question[] = [
       latex: ''
     },
     options: [
-      { id: 'A', value: '5', is_correct: false },
-      { id: 'B', value: '6', is_correct: true },
-      { id: 'C', value: '7', is_correct: false },
-      { id: 'D', value: '8', is_correct: false }
+      { id: 'A', value: '5', isCorrect: false },
+      { id: 'B', value: '6', isCorrect: true },
+      { id: 'C', value: '7', isCorrect: false },
+      { id: 'D', value: '8', isCorrect: false }
     ],
+    correctAnswer: 'B',
     explanation: '10 dikurangi 4 adalah 6'
   },
   {
     id: '3',
-    topic_id: '2',
+    topicId: '2',
     difficulty: 1,
     type: 'mcq',
     content: {
@@ -52,11 +54,12 @@ const DUMMY_QUESTIONS: Question[] = [
       latex: ''
     },
     options: [
-      { id: 'A', value: '10', is_correct: false },
-      { id: 'B', value: '11', is_correct: false },
-      { id: 'C', value: '12', is_correct: true },
-      { id: 'D', value: '13', is_correct: false }
+      { id: 'A', value: '10', isCorrect: false },
+      { id: 'B', value: '11', isCorrect: false },
+      { id: 'C', value: '12', isCorrect: true },
+      { id: 'D', value: '13', isCorrect: false }
     ],
+    correctAnswer: 'C',
     explanation: '3 dikali 4 sama dengan 12'
   }
 ]
@@ -70,7 +73,7 @@ export function useQuestions(topicId?: string) {
       if (USE_DUMMY_DATA) {
         await new Promise(resolve => setTimeout(resolve, 500))
         if (topicId) {
-          return DUMMY_QUESTIONS.filter(q => q.topic_id === topicId)
+          return DUMMY_QUESTIONS.filter(q => q.topicId === topicId)
         }
         return DUMMY_QUESTIONS
       }
@@ -108,11 +111,12 @@ export function useCreateQuestion() {
         await new Promise(resolve => setTimeout(resolve, 500))
         const newQuestion: Question = {
           id: String(Date.now()),
-          topic_id: questionData.topic_id!,
+          topicId: questionData.topicId!,
           difficulty: questionData.difficulty!,
           type: questionData.type!,
           content: questionData.content!,
           options: questionData.options || [],
+          correctAnswer: questionData.correctAnswer,
           explanation: questionData.explanation || ''
         }
         return newQuestion
@@ -123,7 +127,7 @@ export function useCreateQuestion() {
     onSuccess: (newQuestion) => {
       toast.success('Soal berhasil ditambahkan')
       if (USE_DUMMY_DATA) {
-        queryClient.setQueryData<Question[]>(['questions', newQuestion.topic_id], (old) => 
+        queryClient.setQueryData<Question[]>(['questions', newQuestion.topicId], (old) => 
           old ? [...old, newQuestion] : [newQuestion]
         )
       } else {
@@ -152,7 +156,7 @@ export function useUpdateQuestion() {
     onSuccess: (_, variables) => {
       toast.success('Soal berhasil diupdate')
       if (USE_DUMMY_DATA) {
-        const topicId = (variables.data as Question).topic_id
+        const topicId = (variables.data as Question).topicId
         queryClient.setQueryData<Question[]>(['questions', topicId], (old) => 
           old ? old.map(question => 
             question.id === variables.id ? { ...question, ...variables.data } : question
@@ -185,11 +189,11 @@ export function useDeleteQuestion() {
     onSuccess: (_, id) => {
       toast.success('Soal dihapus')
       if (USE_DUMMY_DATA) {
-        // Find the question to get topic_id
+        // Find the question to get topicId
         const allQuestions = DUMMY_QUESTIONS
         const question = allQuestions.find(q => q.id === id)
         if (question) {
-          queryClient.setQueryData<Question[]>(['questions', question.topic_id], (old) => 
+          queryClient.setQueryData<Question[]>(['questions', question.topicId], (old) => 
             old ? old.filter(q => q.id !== id) : []
           )
         }

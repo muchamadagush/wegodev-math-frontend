@@ -63,7 +63,7 @@ export default function QuestionList() {
           <option value="">-- Pilih Topik --</option>
           {topics?.map(topic => (
             <option key={topic.id} value={topic.id}>
-              {topic.name} (Kelas {topic.grade_level})
+              {topic.name} (Kelas {topic.gradeLevel})
             </option>
           ))}
         </select>

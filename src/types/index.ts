@@ -1,33 +1,50 @@
 // src/types/index.ts
 
-export interface Parent {
+export interface Admin {
   id: string
   email: string
-  full_name: string
-  created_at: string
-  subscription: {
-    plan: string
-    is_active: boolean
-  }
-  children_ids: string[]
+  fullName: string
+  role: string
+  isActive: boolean
 }
 
 export interface AdminLoginResponse {
   token: string
-  user: {
-    email: string
-    role: string
-  }
+  admin: Admin
+}
+
+export interface Parent {
+  id: string
+  email: string
+  fullName: string
+  phone: string
+  subPlanId?: string
+  subStatus: 'active' | 'expired' | 'past_due' | 'none'
+  subValidUntil?: string
+  childrenIds: string[]
+  createdAt: string
+}
+
+export interface Student {
+  id: string
+  parentId: string
+  username: string
+  displayName: string
+  grade: number
+  schoolName: string
+  xpTotal: number
+  coins: number
+  avatarEquipped?: Record<string, string>
 }
 
 export interface Topic {
   id: string
   name: string
+  subject: 'math' | 'science' | 'english'
+  gradeLevel: number
+  order: number
   slug: string
-  grade_level: number
-  subject: 'math' | 'science'
-  question_count?: number
-  created_at?: string
+  iconUrl?: string
 }
 
 export interface SubscriptionPlan {
@@ -35,16 +52,16 @@ export interface SubscriptionPlan {
   name: string
   slug: string
   price: number
-  original_price: number
-  duration_days: number
+  originalPrice?: number
+  durationDays: number
   features: string[]
-  is_active: boolean
-  is_recommended: boolean
+  isActive: boolean
+  isRecomended: boolean
 }
 
 export interface Question {
   id: string
-  topic_id: string
+  topicId: string
   difficulty: 1 | 2 | 3
   type: 'mcq' | 'fill_in'
   content: {
@@ -52,10 +69,11 @@ export interface Question {
     image?: string
     latex?: string
   }
-  options: {
+  options?: {
     id: string
     value: string
-    is_correct: boolean
+    isCorrect?: boolean
   }[]
-  explanation: string
+  correctAnswer: any
+  explanation?: string
 }
