@@ -29,3 +29,15 @@ export interface Topic {
   question_count?: number
   created_at?: string
 }
+
+export interface SubscriptionPlan {
+  id: string
+  name: string
+  slug: string
+  price: number
+  original_price: number
+  duration_days: number
+  features: string[]
+  is_active: boolean
+  is_recommended: boolean
+}

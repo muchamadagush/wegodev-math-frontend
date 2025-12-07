@@ -7,6 +7,9 @@ import StudentDetail from './features/users/StudentDetail'
 import Curriculum from './features/curriculum'
 import CreateTopic from './features/curriculum/CreateTopic'
 import EditTopic from './features/curriculum/EditTopic'
+import PlanList from './features/subscriptions/PlanList'
+import CreatePlan from './features/subscriptions/CreatePlan'
+import EditPlan from './features/subscriptions/EditPlan'
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
           <Route path="/dashboard/curriculum" element={<Curriculum />} />
           <Route path="/dashboard/curriculum/new" element={<CreateTopic />} />
           <Route path="/dashboard/curriculum/:id/edit" element={<EditTopic />} />
+          <Route path="/dashboard/subscriptions" element={<PlanList />} />
+          <Route path="/dashboard/subscriptions/new" element={<CreatePlan />} />
+          <Route path="/dashboard/subscriptions/:id/edit" element={<EditPlan />} />
         </Route>
         <Route path="/" element={<Navigate to="/dashboard/parents" replace />} />
         <Route path="*" element={<div className="p-8 text-center">Halaman tidak ditemukan</div>} />
