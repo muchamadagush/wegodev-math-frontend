@@ -97,3 +97,19 @@ export interface Payment {
   paidAt?: number // Changed from string to number (epoch ms)
   createdAt: number // Changed from string to number (epoch ms)
 }
+
+export interface Item {
+  id: string
+  name: string
+  type: 'head' | 'outfit' | 'background'
+  costCoins: number
+  assetUrl: string
+  isPremium: boolean
+}
+
+export interface StudentInventory {
+  id: string
+  itemId: string
+  acquiredAt: number // Epoch milliseconds
+  item?: Item // Joined data mock
+}

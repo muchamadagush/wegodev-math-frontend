@@ -5,7 +5,7 @@ import { useStudentsByParent } from '../../hooks/useStudents'
 import { formatDate } from '../../utils/date'
 import { Button } from '../../components/ui/Button'
 
-export default function StudentDetail() {
+export default function ParentDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   
@@ -24,7 +24,7 @@ export default function StudentDetail() {
     return (
       <div className="bg-white p-6 rounded shadow text-black">
         <div className="text-red-600">Error: {errorParent.message}</div>
-        <Button onClick={() => navigate('/dashboard/parents')} className="mt-4">
+        <Button onClick={() => navigate('/dashboard/users/parents')} className="mt-4">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Kembali
         </Button>
@@ -36,7 +36,7 @@ export default function StudentDetail() {
     return (
       <div className="bg-white p-6 rounded shadow text-black">
         <div className="text-red-600">Data orang tua tidak ditemukan</div>
-        <Button onClick={() => navigate('/dashboard/parents')} className="mt-4">
+        <Button onClick={() => navigate('/dashboard/users/parents')} className="mt-4">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Kembali
         </Button>
@@ -74,7 +74,7 @@ export default function StudentDetail() {
         <Button
           variant="outline"
           size="sm"
-          onClick={() => navigate('/dashboard/parents')}
+          onClick={() => navigate('/dashboard/users/parents')}
           className="mb-3"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -218,7 +218,10 @@ export default function StudentDetail() {
                   <Button
                     variant="default"
                     size="sm"
-                    onClick={() => navigate(`/dashboard/students/${student.id}/edit`)}
+                    onClick={() => {
+                      // TODO: Implement edit student
+                      alert('Fitur Edit Anak akan segera hadir')
+                    }}
                     className="flex-1 text-xs"
                   >
                     Edit Anak

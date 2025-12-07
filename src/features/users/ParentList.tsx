@@ -1,7 +1,10 @@
+import { useNavigate } from 'react-router-dom'
+import { Eye } from 'lucide-react'
 import { useParents } from '../../hooks/useParents'
 import { formatDate } from '../../utils/date'
 
 export default function ParentList() {
+  const navigate = useNavigate()
   const { data, isLoading, error } = useParents()
 
   if (isLoading) {
@@ -44,7 +47,13 @@ export default function ParentList() {
               <td className="p-3 text-center">{parent.childrenIds?.length || 0}</td>
               <td className="p-3">{formatDate(parent.createdAt)}</td>
               <td className="p-3">
-                <button className="text-blue-600 hover:underline">Detail</button>
+                <button
+                  onClick={() => navigate(`/dashboard/parents/${parent.id}`)}
+                  className="text-blue-600 hover:text-blue-800 transition-colors p-1 rounded hover:bg-blue-50"
+                  title="Lihat Detail"
+                >
+                  <Eye className="w-5 h-5" />
+                </button>
               </td>
             </tr>
           ))}
