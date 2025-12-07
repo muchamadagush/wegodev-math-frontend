@@ -6,6 +6,7 @@ export interface Admin {
   fullName: string
   role: string
   isActive: boolean
+  createdAt: number // Changed from string to number (epoch ms)
 }
 
 export interface AdminLoginResponse {
@@ -18,11 +19,9 @@ export interface Parent {
   email: string
   fullName: string
   phone: string
-  subPlanId?: string
-  subStatus: 'active' | 'expired' | 'past_due' | 'none'
-  subValidUntil?: string
   childrenIds: string[]
-  createdAt: string
+  createdAt: number // Changed from string to number (epoch ms)
+  // Note: Subscription dihapus dari sini, pindah ke Student
 }
 
 export interface Student {
@@ -32,9 +31,18 @@ export interface Student {
   displayName: string
   grade: number
   schoolName: string
+  
+  // New Subscription Fields (per-child)
+  subPlanId?: string
+  subStatus: 'active' | 'expired' | 'past_due' | 'none'
+  subValidUntil?: number // Changed from string to number (epoch ms)
+
+  // Gamification
   xpTotal: number
+  level: number
   coins: number
   avatarEquipped?: Record<string, string>
+  createdAt: number // Changed from string to number (epoch ms)
 }
 
 export interface Topic {
@@ -76,4 +84,16 @@ export interface Question {
   }[]
   correctAnswer: any
   explanation?: string
+}
+
+export interface Payment {
+  id: string
+  orderId: string
+  parentId: string
+  studentId: string
+  amount: number
+  status: 'pending' | 'paid' | 'failed'
+  planPurchased: string
+  paidAt?: number // Changed from string to number (epoch ms)
+  createdAt: number // Changed from string to number (epoch ms)
 }
