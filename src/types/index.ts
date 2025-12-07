@@ -41,3 +41,21 @@ export interface SubscriptionPlan {
   is_active: boolean
   is_recommended: boolean
 }
+
+export interface Question {
+  id: string
+  topic_id: string
+  difficulty: 1 | 2 | 3
+  type: 'mcq' | 'fill_in'
+  content: {
+    text: string
+    image?: string
+    latex?: string
+  }
+  options: {
+    id: string
+    value: string
+    is_correct: boolean
+  }[]
+  explanation: string
+}
