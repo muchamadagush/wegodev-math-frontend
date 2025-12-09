@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'sonner'
 import AdminLayout from './components/layout/AdminLayout'
 import DashboardHome from './features/dashboard/DashboardHome'
+import ReportsPage from './features/reports/ReportsPage'
 import Login from './features/auth/Login'
 import UsersList from './features/users/ParentList'
 import StudentDetail from './features/users/StudentDetail'
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route element={<AdminLayout />}>
           <Route index path="/dashboard" element={<DashboardHome />} />
+          <Route path="/dashboard/reports" element={<ReportsPage />} />
           <Route path="/dashboard/parents" element={<UsersList />} />
           <Route path="/dashboard/parents/:id" element={<StudentDetail />} />
           <Route path="/dashboard/students/:id" element={<StudentProfile />} />

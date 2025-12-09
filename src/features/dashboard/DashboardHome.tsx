@@ -125,7 +125,7 @@ export default function DashboardHome() {
               <QuickActionButton
                 label="Lihat Laporan"
                 icon={FileText}
-                onClick={() => alert('Feature coming soon')}
+                onClick={() => navigate('/dashboard/reports')}
                 variant="secondary"
               />
             </div>

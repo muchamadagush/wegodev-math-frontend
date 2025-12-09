@@ -1,5 +1,5 @@
 import { Outlet, Link } from 'react-router-dom'
-import { LayoutDashboard, Users, BookOpen, CreditCard, FileQuestion, LogOut } from 'lucide-react'
+import { LayoutDashboard, Users, BookOpen, CreditCard, FileQuestion, LogOut, BarChart3 } from 'lucide-react'
 
 export default function AdminLayout() {
   const handleLogout = () => {
@@ -17,6 +17,9 @@ export default function AdminLayout() {
         <nav className="flex-1 p-4 space-y-2">
           <Link to="/dashboard" className="flex items-center gap-2 p-2 hover:bg-slate-800 rounded">
             <LayoutDashboard size={20} /> Dashboard
+          </Link>
+          <Link to="/dashboard/reports" className="flex items-center gap-2 p-2 hover:bg-slate-800 rounded">
+            <BarChart3 size={20} /> Laporan
           </Link>
           <Link to="/dashboard/parents" className="flex items-center gap-2 p-2 hover:bg-slate-800 rounded">
             <Users size={20} /> Data Parents
