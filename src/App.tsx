@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'sonner'
 import AdminLayout from './components/layout/AdminLayout'
+import DashboardHome from './features/dashboard/DashboardHome'
 import Login from './features/auth/Login'
 import UsersList from './features/users/ParentList'
 import StudentDetail from './features/users/StudentDetail'
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<AdminLayout />}>
+          <Route index path="/dashboard" element={<DashboardHome />} />
           <Route path="/dashboard/parents" element={<UsersList />} />
           <Route path="/dashboard/parents/:id" element={<StudentDetail />} />
           <Route path="/dashboard/students/:id" element={<StudentProfile />} />
@@ -37,7 +39,7 @@ function App() {
           <Route path="/dashboard/questions/new" element={<CreateQuestion />} />
           <Route path="/dashboard/questions/:id/edit" element={<EditQuestion />} />
         </Route>
-        <Route path="/" element={<Navigate to="/dashboard/parents" replace />} />
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="*" element={<div className="p-8 text-center">Halaman tidak ditemukan</div>} />
       </Routes>
     </BrowserRouter>
