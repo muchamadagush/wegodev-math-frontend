@@ -338,3 +338,78 @@ export const DUMMY_DIFFICULT_QUESTIONS = [
   },
 ]
 
+/**
+ * DUMMY DATA: Shop Items
+ * Data item-item untuk toko (avatar customization)
+ */
+export const DUMMY_ITEMS = [
+  {
+    id: 'item-1',
+    name: 'Topi Wisuda',
+    type: 'head' as const,
+    costCoins: 500,
+    assetUrl: 'https://via.placeholder.com/100?text=Topi+Wisuda',
+    isPremium: false,
+    createdAt: daysAgo(45),
+  },
+  {
+    id: 'item-2',
+    name: 'Baju Astronot',
+    type: 'outfit' as const,
+    costCoins: 1000,
+    assetUrl: 'https://via.placeholder.com/100?text=Astronot',
+    isPremium: true,
+    createdAt: daysAgo(40),
+  },
+  {
+    id: 'item-3',
+    name: 'Background Sekolah',
+    type: 'background' as const,
+    costCoins: 750,
+    assetUrl: 'https://via.placeholder.com/100?text=Sekolah',
+    isPremium: false,
+    createdAt: daysAgo(35),
+  },
+  {
+    id: 'item-4',
+    name: 'Topi Polisi',
+    type: 'head' as const,
+    costCoins: 600,
+    assetUrl: 'https://via.placeholder.com/100?text=Topi+Polisi',
+    isPremium: false,
+    createdAt: daysAgo(30),
+  },
+  {
+    id: 'item-5',
+    name: 'Baju Superhero',
+    type: 'outfit' as const,
+    costCoins: 1200,
+    assetUrl: 'https://via.placeholder.com/100?text=Superhero',
+    isPremium: true,
+    createdAt: daysAgo(25),
+  },
+  {
+    id: 'item-6',
+    name: 'Background Pantai',
+    type: 'background' as const,
+    costCoins: 500,
+    assetUrl: 'https://via.placeholder.com/100?text=Pantai',
+    isPremium: false,
+    createdAt: daysAgo(20),
+  },
+]
+
+/**
+ * Helper function untuk get item by ID
+ */
+export function getItemById(id: string) {
+  return DUMMY_ITEMS.find((item) => item.id === id)
+}
+
+/**
+ * Helper function untuk get all items
+ */
+export function getAllItems() {
+  return DUMMY_ITEMS
+}
+

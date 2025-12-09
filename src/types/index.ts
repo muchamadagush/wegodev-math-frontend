@@ -105,6 +105,7 @@ export interface Item {
   costCoins: number
   assetUrl: string
   isPremium: boolean
+  createdAt: number
 }
 
 export interface StudentInventory {
